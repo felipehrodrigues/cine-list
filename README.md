@@ -39,17 +39,17 @@ CSS3
 
 📁 Como executar o projeto localmente
 Clone o repositório:
-
 git clone https://github.com/felipehrodrigues/cine-list.git
+
 Acesse a pasta do projeto:
-
 cd cine-list
+
 Instale as dependências:
-
 npm install
-Inicie o servidor de desenvolvimento:
 
+Inicie o servidor de desenvolvimento:
 npm start
+
 A aplicação estará disponível em http://localhost:3000.
 
 🎯 Objetivo acadêmico
