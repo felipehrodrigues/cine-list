@@ -1,0 +1,140 @@
+import { useEffect, useState } from "react";
+import Navegação from "../navegação/Navegação";
+import Busca from "../navegação/Busca";
+
+function Filmes() {
+  const [filmes, setFilmes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [pagina, setPagina] = useState(1);
+  const [buscaFilmes, setBuscaFilmes] = useState("");
+  const [termoDigitado, setTermoDigitado] = useState("");
+  const [itemSelecionado, setItemSelecionado] = useState(null);
+
+  const itemClick = (filmes) => {
+    setItemSelecionado(filmes);
+  };
+
+  useEffect(() => {
+    const apiKey = "73ca8e7afee9b5b9f8e22ab7737ab498";
+
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3M2NhOGU3YWZlZTliNWI5ZjhlMjJhYjc3MzdhYjQ5OCIsIm5iZiI6MS43NDYyMzEzNTg2NDk5OTk5ZSs5LCJzdWIiOiI2ODE1NjAzZWNkNDg3ZDYxODkwODliMTAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.eYAz6x0yjaSQ4Mt7_kthE6x04HmqAvuOnkXHtYI01t0",
+      },
+    };
+
+    const fetchFilmes = async () => {
+      setLoading(true);
+
+      const url = buscaFilmes
+        ? `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+            buscaFilmes
+          )}&language=pt-BR&page=${pagina}&api_key=${apiKey}`
+        : `https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=${pagina}&api_key=${apiKey}`;
+
+      try {
+        const res = await fetch(url, options);
+        if (!res.ok) {
+          throw new Error("Falha na requisição");
+        }
+        const data = await res.json();
+        setFilmes(data.results || []);
+      } catch (erro) {
+        setError(erro.message); // Setando erro caso haja algum
+        console.error("Erro na requisição:", erro);
+      } finally {
+        setLoading(false); // Garantir que o carregamento seja sempre removido
+      }
+    };
+
+    fetchFilmes();
+  }, [pagina, buscaFilmes]);
+
+  if (loading) {
+    return <div>Carregando filmes...</div>;
+  }
+
+  if (error) {
+    return <div>Ocorreu um erro: {error}</div>; // Exibe erro, se houver
+  }
+
+  return (
+    <div>
+      <Busca
+        setPagina={setPagina}
+        setBusca={setBuscaFilmes}
+        termoDigitado={termoDigitado}
+        setTermoDigitado={setTermoDigitado}
+      />
+      <div className="w-full my-10">
+        <div className="flex flex-wrap justify-center gap-6 p-6">
+          {!loading && filmes.length === 0 ? (
+            <p className="text-center text-gray-500">
+              Nenhum filme encontrado.
+            </p>
+          ) : (
+            filmes.map((filme) => (
+              <div
+                key={filme.id}
+                className="w-32 h-auto bg-gray-300 dark:bg-red-900 rounded-lg transform hover:scale-105 transition duration-300 text-center cursor-pointer"
+                onClick={() => itemClick(filme)}
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${filme.poster_path}`}
+                  alt={filme.title}
+                  className="w-full h-auto"
+                />
+                <h2 className="p-1 text-center h-14 flex items-center justify-center text-base font-title">{filme.title}</h2>
+              </div>
+            ))
+          )}
+        </div>
+        {itemSelecionado && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
+            onClick={() => setItemSelecionado(null)}
+          >
+            <div className="bg-white dark:bg-fundoCard p-6 rounded-lg shadow-lg w-[80%] max-w-4xl h-auto max-h-[70vh] overflow-y-auto">
+              <h2 className="text-xl font-bold mb-2 text-center">
+                {itemSelecionado.title}
+              </h2>
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <img
+                  src={`https://image.tmdb.org/t/p/w400${itemSelecionado.poster_path}`}
+                  alt={itemSelecionado.title}
+                  className="w-full md:w-56 mt-4 rounded"
+                />
+                <p className="text-justify text-sm md:text-base mt-4">
+                  <strong>Descrição:</strong> {itemSelecionado.overview}
+                </p>
+              </div>
+              <p className="mt-4">
+                <strong>Lançamento:</strong>{" "}
+                {new Date(itemSelecionado.release_date).toLocaleDateString(
+                  "pt-BR"
+                )}
+              </p>
+              <p>
+                <strong>Média:</strong>{" "}
+                {itemSelecionado.vote_average.toFixed(1)}
+              </p>
+              <button
+                onClick={() => setItemSelecionado(null)}
+                className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+              >
+                Fechar
+              </button>
+            </div>
+          </div>
+        )}
+        <Navegação pagina={pagina} setPagina={setPagina} />
+      </div>
+    </div>
+  );
+}
+
+export default Filmes;
