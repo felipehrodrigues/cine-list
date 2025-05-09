@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+🎬 Cine List
+O projeto permite aos usuários explorar uma lista de filmes e séries, exibindo suas sinopses e informações adicionais de forma simples e organizada.
+Cine List é uma aplicação web desenvolvida como parte da disciplina de Programação Web do curso de Análise e Desenvolvimento de Sistemas.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+🔗 Acesse o projeto online: https://cine-list-ten.vercel.app
 
-In the project directory, you can run:
+🚀 Funcionalidades
 
-### `npm start`
+✅ Listagem de filmes e séries
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+✅ Exibição de sinopses e detalhes (ano de lançamento etc.)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+✅ Barra de pesquisa para buscar filmes e séries
 
-### `npm test`
+✅ Modal ao clicar em um item, exibindo mais informações
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+✅ Interface responsiva: A aplicação se adapta automaticamente a diferentes tamanhos de tela, desde dispositivos móveis até desktops.
 
-### `npm run build`
+✅ Tela separada para filmes e séries
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+✅ Navegação fluida entre os itens
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+💻 Tecnologias Utilizadas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+React
 
-### `npm run eject`
+Tailwind CSS
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+JavaScript
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+HTML5
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+CSS3
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+📸 Captura de Tela
+![Tela do Cine List](https://github.com/felipehrodrigues/cine-list/blob/main/src/images/telas-cine-list.png?raw=true)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+📁 Como executar o projeto localmente
+Clone o repositório:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+git clone https://github.com/felipehrodrigues/cine-list.git
+Acesse a pasta do projeto:
 
-### Code Splitting
+cd cine-list
+Instale as dependências:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+npm install
+Inicie o servidor de desenvolvimento:
 
-### Analyzing the Bundle Size
+npm start
+A aplicação estará disponível em http://localhost:3000.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+🎯 Objetivo acadêmico
+Este projeto foi criado com fins didáticos para aplicar na prática os conceitos de desenvolvimento front-end abordados na disciplina de Programação Web do curso de Análise e Desenvolvimento de Sistemas.
 
-### Making a Progressive Web App
+👨‍💻 Autor
+Felipe H. Rodrigues
+📧 feliperodriguese@gmail.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
